@@ -1,0 +1,21 @@
+mongo:
+  image: mongo
+  container_name: graylog-mongo
+
+elasticsearch:
+  image: elasticsearch
+  container_name: graylog-elasticsearch
+  command: elasticsearch -Des.cluster.name="graylog"
+
+grayserver:
+  image: graylog2/server
+  container_name: graylog-grayserver
+  volumes:
+    - ./graylog.config:/usr/share/graylog/data/config/graylog.conf
+  external_links:
+    - graylog-mongo:mongo
+    - graylog-elasticsearch:elasticsearch
+  ports:
+    - "9000:9000"
+    - "12900:12900"
+    - "12201:12201/udp"
