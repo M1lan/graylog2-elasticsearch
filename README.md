@@ -1,3 +1,4 @@
+# What is this?
 Logging service for servers and Docker containers using Graylog, ElasticSearch and MongoDb.
 
 # Docker
